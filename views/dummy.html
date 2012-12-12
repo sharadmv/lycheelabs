@@ -87,10 +87,12 @@
 					We used several techniques from EE125 in Dummy's design. <br>
 					To move from pixel to real world coordinates, we applied the inverse homography matrix computed from the 4 corners of the workspace
 					(in pixel coordinates) and the real world dimensions of the workspace.<br>
+					Applying a median filter to the background subtracted image of the table reduced noise and made blob detection more accurate.<br><br>
 					The Kaden-Pahan subproblems allowed us to easily break down and derive geometric solutions for the inverse kinematics of our 6-joint arm.
 					<br>
-					Applying a median filter to the background subtracted image of the table reduced noise and made blob detection more accurate.<br><br>
-				</div>
+					<img src="/img/ik.png"><br>
+					Pictured above: The 3 subproblems/solutions that we used to construct a solution to the entire inverse kinematics problem.<br>
+					</div>
 				
 				<h2> Computer Vision </h2>
 				<div class="text18">
