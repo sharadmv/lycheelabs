@@ -5,16 +5,39 @@
 		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 		<script>
 			$(function() {
-				$("#slideshow > div:gt(0)").hide();
+				var paused = false,
+					controldiv = $('#playpause'),
+					timer;
 					
-				setInterval(function() {
-					$('#slideshow > div:first')
-					.fadeOut(1000)
-					.next()
-					.fadeIn(1000)
-					.end()
-					.appendTo('#slideshow');
-				}, 8000);
+				function play() {
+					timer = setInterval(function() {
+						$('#slideshow > div:first')
+						.fadeOut(1000)
+						.next()
+						.fadeIn(1000)
+						.end()
+						.appendTo('#slideshow');
+					}, 5000);
+					controldiv.text("Pause ||");
+				}
+				
+				function pause() {
+					clearInterval(timer);
+					controldiv.text("Play >");
+				}
+				
+				controldiv.click(function() {
+					paused = !paused;
+					if (paused) {
+						pause();
+					}
+					else {
+						play();
+					}
+				});
+				
+				$("#slideshow > div:gt(0)").hide();
+				play();
 			});
 		</script>
 	</head>
@@ -75,6 +98,9 @@
 					<h1>DUMMY</h1>
 					<h2>Robotic Desk Cleaner</h2>
 					<h3> EE125 Final Project </h3>
+					<div id="slidecontrolbox">
+						<div id="playpause" class="slidecontrol"> Pause || </div>
+					</div>
 				</div>
 			</div>
 			<div class="text">
@@ -104,8 +130,9 @@
 					Repeating this process (trying again if it ever drops something), Dummy eventually cleans the entire desk.<br><br>
 				</div>
 					
-				<iframe width="900 height="675" src="http://www.youtube.com/embed/_0QbA81YPbA" frameborder="0" allowfullscreen></iframe>
-					
+				<iframe width="900" height="675" src="http://www.youtube.com/embed/_0QbA81YPbA" frameborder="0" allowfullscreen></iframe>
+				
+				<br>
 				<h2> Design </h2>
 				<div class="text18">
 					The major challenges in building Dummy were the computer vision and inverse kinematics involved in finding and grasping objects.
@@ -161,7 +188,9 @@
 					Finally, the gripper was very good at grasping long objects, but objects with less regular shapes are dropped more often. Using a
 					universal gripper in place of the 2-finger gripper would solve this problem.<br><br>
 				</div>
-				
+				<br>
+				Download the <a href="/res/RoboticsPresentation.ppt">presentation slides</a> from EE125 Demo Day on 12/11/2012.
+				<br>
 				<h2> Contributors </h2>
 				<div class="text18">
 					Nelson Zhang and Siddhartho Bhattacharya are both 2nd year EECS undergrads at Berkeley.<br>

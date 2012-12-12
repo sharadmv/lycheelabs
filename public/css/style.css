@@ -61,10 +61,10 @@ div#slidetitle {
 	color: #fff;
 	font-weight: bold;
 	text-shadow: 2px 2px 0px #6f000d;
-	padding-bottom: 30px;
+	padding-bottom: 10px;
 	padding-right: 30px;
 	position: absolute;
-	bottom: 0px;
+	bottom: 40px;
 	right: 0px;
 }
 
@@ -91,4 +91,12 @@ div.text18 {
 
 .slide {
 	position: absolute;
+}
+
+.slidecontrol {
+	text-align: center;
+	font-size: 16px;
+	font-weight: bold;
+	color: #ffe;
+	cursor: pointer;	
 }
