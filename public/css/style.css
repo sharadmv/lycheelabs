@@ -62,13 +62,21 @@ div#slidetitle {
 	font-weight: bold;
 	text-shadow: 2px 2px 0px #6f000d;
 	padding-bottom: 30px;
-	padding-left: 30px;
+	padding-right: 30px;
 	position: absolute;
 	bottom: 0px;
+	right: 0px;
 }
 
 div.text {
 	font-family: 'PT Sans Narrow';
+	margin-top: 30px;
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+div.text18 {
+	font-size: 18px;
 }
 
 #slideshow {
