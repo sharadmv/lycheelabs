@@ -96,13 +96,13 @@
 				<div class="text18">
 					The first step is to determine what the clean workspace is, thus forming a background image from which we will compare other images to during our background subtraction. This was done by simply taking a picture of the clean workspace and saving it. Then, the user is prompted to mark 4 corners in that image signifying the corners of our workspace to produce our image homography and resulting mapping from image coordinates to real world coordinates. The real world dimensions of the workspace must be measured and input beforehand.
 					<br><br>
+					<img src="/img/1.png"><br>
 					With the homography calculated and the background set, we begin our main loop in our program by always setting the robot arm in the initial configuration, and then taking an image. We find the differences of the image from the background through image subtraction in order to make it easy to identify objects which must be moved and sorted. The subtracted image is also median filtered and binarized to reduce noise and make object detection even simpler.
 					<br><br>
-					<img src="1.png">
 					The resulting image is passed into a Image.findBlobs() function using the simpleCV library, which attempts to find bounded hulls in an image that have a bounded area greater than a certain threshold so that patches of noise are not detected as objects. The location of each object is found via its mass-based centroid done by the Blob.centroid() function call in simpleCV. That coordinate is translated to our real world coordinate system using our inverse homography, and can be passed into our inverse kinematics program when we need to move the arm to pick up the object. 
 					<br><br>
-					<img src="2.png">
-					<img src="3.png">
+					<img src="/img/2.png">
+					<img src="/img/3.png"><br>
 					Once the object is found, we find its minimum bounding rectangle and angle from the horizontal, both of which are function calls to the simpleCV library - Blob.minRect() and Blob.angle() respectively. The angle is particularly important so that we can tell our robotic arm at what angle the grasper should be oriented to pick up the object along the axis which ensures a stable grip. Finally, we also store the ratio of the length to the height of the object in an effort to gain some information about the thickness/shape of the object, which can be used for rudimentary object classification. Thus pencils and other long, thin objects would be quickly identified with a high ratio of length to width while erasers or round objects would have a ratio closer to 1 and would be identified as such.
 					<br><br>
 					With all this information for each object, we simply pass the list of identified objects into the next phase of our program which does the inverse kinematics for each object, moving the arm to that object, grasping it, moving it to the corresponding bin, and releasing it. This is repeated in our program until all objects have been cleared and sorted.
