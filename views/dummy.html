@@ -40,9 +40,7 @@
 				<h2 class="intext"> "If a cluttered desk is a sign of a cluttered mind..." </h2>
 				<div class="text18">
 					Of what then, is an empty desk a sign? Some would say an empty mind, but we think an empty desk means there's finally some free space to work on!<br><br>
-					Instead of actually cleaning our desks, we built Dummy - a robotic arm that clears your desk of clutter to save time and space.
-					
-					Built by: Nelson Zhang, Siddhartho Bhattacharya, Anibal Madrid.
+					Instead of actually cleaning our desks, we built Dummy - a robotic arm that clears your desk of clutter to save time and space.<br><br>
 					
 					Dummy is comprised of a 6-joint arm and a single webcam. The full list of parts is as follows:<br><br>
 					&nbsp;- (6) Dynamixel AX-12 servos + servo brackets/connectors<br>
@@ -57,7 +55,8 @@
 					
 					Code was written purely in Python, using the SimpleCV library for computer vision and pyDynamixel to communicate with the
 					servos. In addition to the CV and inverse kinematics code, we also wrote some very simple Logo-like syntax to easily 
-					pose Dummy in any configuration, and a classifier for objects that Dummy sees.
+					pose Dummy in any configuration, and a classifier for objects that Dummy sees.<br>
+					<a href="http://github.com/ohtrahddis/RoboticDeskCleaner">Github Repo</a><br>
 					
 					Dummy is capable of detecting any number of objects within its workspace and calculate their approximate dimensions. 
 					It then maneuvers to grasp each object, carry it over to a bin, and drop it.
@@ -120,6 +119,12 @@
 					a good idea to implement, though, by checking the end effector position (using forward kinematics) with the planned position.<br>
 					Finally, the gripper was very good at grasping long objects, but objects with less regular shapes are dropped more often. Using a
 					universal gripper in place of the 2-finger gripper would solve this problem.<br><br>
+				</div>
+				
+				<h2> Contributors </h2>
+				<div class="text18">
+					Nelson Zhang and Siddhartho Bhattacharya are both 2nd year EECS undergrads at Berkeley.<br>
+					Anibal Madrid is an exchange student from Chile, at Berkeley for the fall semester.
 				</div>
 				
 			</div>
