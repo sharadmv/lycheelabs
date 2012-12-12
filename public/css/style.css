@@ -81,5 +81,14 @@ div.text18 {
 
 #slideshow {
 	height: 500px;
-	position: relative;
+	position: absolute;
 }		
+
+#slidecontainer {
+	height: 500px;
+	position: relative;
+}
+
+.slide {
+	position: absolute;
+}
