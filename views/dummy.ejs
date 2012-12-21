@@ -1,0 +1,138 @@
+<div id="content">
+	<div id="slidecontainer">
+		<div id="slideshow">
+			<div class="slide">
+				<img src="/img/slide1.jpg">
+			</div>
+			<div class="slide">
+				<img src="/img/slide2.JPG">
+			</div>
+			<div class="slide">
+				<iframe width="900" height="500" src="http://www.youtube.com/embed/xejj3C4mfP4" frameborder="0" allowfullscreen></iframe>
+			</div>
+			<div class="slide">
+				<img src="/img/slide3.JPG">
+			</div>
+			<div class="slide">
+				<img src="/img/slide4.jpg">
+			</div>
+			<div class="slide">
+				<iframe width="900" height="500" src="http://www.youtube.com/embed/LvJeqloHEjQ" frameborder="0" allowfullscreen></iframe>
+			</div>
+			<div class="slide">
+				<img src="/img/slide5.jpg">
+			</div>
+			<div class="slide">
+				<img src="/img/slide6.jpg">
+			</div>
+		</div>
+		<div id="slidetitle">
+			<h1>DUMMY</h1>
+			<h2>Robotic Desk Cleaner</h2>
+			<h3> EE125 Final Project </h3>
+			<div id="slidecontrolbox">
+				<div id="playpause" class="slidecontrol"> Pause || </div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="text">
+		<h2 class="intext"> "If a cluttered desk is a sign of a cluttered mind..." </h2>
+		<div class="text18">
+			Of what then, is an empty desk a sign? Some would say an empty mind, but we think it just means there's finally some free space to work on!<br><br>
+			Instead of actually cleaning our desks, we built Dummy - a robotic arm that clears your desk of clutter to save time and space.<br><br>
+			
+			Dummy is comprised of a 6-joint arm and a single webcam. The full list of parts is as follows:<br><br>
+			&nbsp;- (6) <a href="http://www.robotis.com/xe/dynamixel_en">Dynamixel AX-12 servos + servo brackets/connectors</a><br>
+			&nbsp;- (1) <a href="http://www.trossenrobotics.com/robotis-bioloid-usb2dynamixel.aspx">USB2Dynamixel serial/TTL converter</a><br>
+			&nbsp;- (1) <a href="http://www.roadnarrows.com/store/graboid-dynamixel-1.html">RoadNarrows Graboid Series D gripper</a><br>
+			&nbsp;- (1) 12V Power supply or battery<br>
+			&nbsp;- (1) <a href="http://www.amazon.com/gp/product/B004H1MCKY/ref=oh_details_o00_s00_i00">HD Webcam</a><br>
+			&nbsp;- (3) Party cups<br>
+			&nbsp;- (1) plastic knife<br>
+			&nbsp;- Counterweights (for the robot base)<br>
+			<br>
+			
+			Code was written purely in Python, using the <a href="simplecv.org">SimpleCV</a> library for computer vision and 
+			<a href="https://github.com/iandanforth/pydynamixel">pydynamixel</a> to communicate with the
+			servos. In addition to the CV and inverse kinematics code, we also wrote some very simple Logo-like syntax to easily 
+			pose Dummy in any configuration, and a classifier for objects that Dummy sees.<br>
+			&nbsp;<a href="http://github.com/ohtrahddis/RoboticDeskCleaner">Github Repo</a><br><br>
+			
+			Dummy is capable of detecting any number of objects within its workspace and calculating their approximate dimensions. 
+			It then maneuvers to grasp each object, carry it over to a bin, and drop it.
+			Repeating this process (trying again if it ever drops something), Dummy eventually cleans the entire desk.<br><br>
+		</div>
+			
+		<iframe width="900" height="675" src="http://www.youtube.com/embed/_0QbA81YPbA" frameborder="0" allowfullscreen></iframe>
+		
+		<br>
+		<h2> Design </h2>
+		<div class="text18">
+			The major challenges in building Dummy were the computer vision and inverse kinematics involved in finding and grasping objects.
+			Hence, we carefully designed the robot to reduce these hard problems into easier subproblems. Namely:<br>
+			&nbsp;&nbsp;&nbsp;&nbsp;- The camera is positioned to capture the entire workspace, including the robot and target bin<br>
+			&nbsp;&nbsp;&nbsp;&nbsp;- The wrist joint is only moved along a plane parallel to the desk<br>
+			&nbsp;&nbsp;&nbsp;&nbsp;- The kinematics of the 6 joints are split into 3 subproblems:<br>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1. Alignment of the arm with the object<br>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2. Alignment of the grasper with the object's minor axis<br>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3. Extending the arm to the correct distance<br>
+			<br>
+			The 3 subproblems have closed-form geometric solutions, making the inverse kinematics much easier to implement.<br>
+			Subproblem 1 is simply a mapping from rectangular to polar co-ordinates for the object's position.<br> Subproblem 2 is
+			made possible by our design of the wrist joint, which offers 4 degrees freedom for the gripper. This allows Dummy to grasp objects
+			in the most stable manner (i.e. along the minor axis of the bounding rectangle/ellipse).<br>
+			Subproblem 3 is the two-link IK problem with the endpoints constrained to one axis. So long as the goal position is within the workspace,
+			this problem has a geometric solution.<br><br>
+			It is easy to see that in fact, these 3 subproblems are exactly equivalent to the 3 Paden-Kahan subproblems.<br><br>
+		</div>
+		<br>
+		<h2> Mathematics for Dummies </h2>
+		<div class="text18">
+			We used several techniques from EE125 in Dummy's design. <br><br>
+			To move from pixel to real world coordinates, we applied the inverse homography matrix computed from the 4 corners of the workspace
+			(in pixel coordinates) and the real world dimensions of the workspace.<br><br>
+			Applying a median filter to the background subtracted image of the table reduced noise and made blob detection more accurate.<br><br>
+			The Kaden-Pahan subproblems allowed us to easily break down and derive geometric solutions for the inverse kinematics of our 6-joint arm.
+			<br>
+			<img src="/img/ik.png"><br>
+			Pictured above: The 3 subproblems/solutions that we used to construct a solution to the entire inverse kinematics problem.<br>
+			</div>
+		<br>
+		<h2> Computer Vision </h2>
+		<div class="text18">
+			The first step is to determine what the clean workspace is, thus forming a background image from which we will compare other images to during our background subtraction. This was done by simply taking a picture of the clean workspace and saving it. Then, the user is prompted to mark 4 corners in that image signifying the corners of our workspace to produce our image homography and resulting mapping from image coordinates to real world coordinates. The real world dimensions of the workspace must be measured and input beforehand.
+			<br><br>
+			<img src="/img/1.PNG"><br>
+			With the homography calculated and the background set, we begin our main loop in our program by always setting the robot arm in the initial configuration, and then taking an image. We find the differences of the image from the background through image subtraction in order to make it easy to identify objects which must be moved and sorted. The subtracted image is also median filtered and binarized to reduce noise and make object detection even simpler.
+			<br><br>
+			The resulting image is passed into a Image.findBlobs() function using the simpleCV library, which attempts to find bounded hulls in an image that have a bounded area greater than a certain threshold so that patches of noise are not detected as objects. The location of each object is found via its mass-based centroid done by the Blob.centroid() function call in simpleCV. That coordinate is translated to our real world coordinate system using our inverse homography, and can be passed into our inverse kinematics program when we need to move the arm to pick up the object. 
+			<br><br>
+			<img src="/img/2.PNG">
+			<img src="/img/3.PNG"><br>
+			Once the object is found, we find its minimum bounding rectangle and angle from the horizontal, both of which are function calls to the simpleCV library - Blob.minRect() and Blob.angle() respectively. The angle is particularly important so that we can tell our robotic arm at what angle the grasper should be oriented to pick up the object along the axis which ensures a stable grip. Finally, we also store the ratio of the length to the height of the object in an effort to gain some information about the thickness/shape of the object, which can be used for rudimentary object classification. Thus pencils and other long, thin objects would be quickly identified with a high ratio of length to width while erasers or round objects would have a ratio closer to 1 and would be identified as such.
+			<br><br>
+			With all this information for each object, we simply pass the list of identified objects into the next phase of our program which does the inverse kinematics for each object, moving the arm to that object, grasping it, moving it to the corresponding bin, and releasing it. This is repeated in our program until all objects have been cleared and sorted.
+			<br><br>
+		</div>
+		
+		<h2> Future improvements </h2>
+		<div class="text18">
+			One major issue we ran into while building Dummy was the insufficient torque compensation on the AX-12 servos. After several
+			failures due to overheating, we were forced to reduce the link length on the robot arm and hence also reduce the effective workspace
+			reachable by Dummy.<br>
+			However, the servos were quite accurate, so we did not run into any problems with drift in angles. Open-loop feedback would still be
+			a good idea to implement, though, by checking the end effector position (using forward kinematics) with the planned position.<br>
+			Finally, the gripper was very good at grasping long objects, but objects with less regular shapes are dropped more often. Using a
+			universal gripper in place of the 2-finger gripper would solve this problem.<br><br>
+		</div>
+		Download the <a href="/res/RoboticsPresentation.ppt">presentation slides</a> from EE125 Demo Day on 12/11/2012.
+		<br>
+		<h2> Contributors </h2>
+		<div class="text18">
+			Nelson Zhang and Siddhartho Bhattacharya are both 2nd year EECS undergrads at Berkeley.<br>
+			Anibal Madrid is an exchange student from Chile, at Berkeley for the fall semester.
+		</div>
+		
+	</div>
+</div>
