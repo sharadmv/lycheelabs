@@ -12,10 +12,8 @@ app.get('/projects', function(req, res) {
 	res.render('projects');
 });
 
-
-
 app.get('/projects/dummy', function(req, res) {
-	res.end(dummy);
+	res.render('dummy');
 });
 
 app.use('/', express.static(__dirname + "/public"));
