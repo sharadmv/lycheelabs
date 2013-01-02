@@ -8,6 +8,10 @@ var dummy = fs.readFileSync("views/dummy.html");
 app.set('view engine', 'ejs');
 app.set('views', __dirname + '/views');
 
+app.get('/', function(req, res) {
+	res.render('about', {title: "about us"});
+});
+
 app.get('/about', function(req, res) {
 	res.render('about', {title: "about us"});
 });
