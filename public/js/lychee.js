@@ -1,5 +1,16 @@
-$(function() {
+var bucket = "https://s3.amazonaws.com/lycheelabs/";
 
+function easeGrid(id, direction, maxtime, callback) {
+	$(".grid#"+id).children().each(function(i, e) {
+		$(e).animate({
+			opacity: ((direction == "out") ? 0.0 : 0.75)
+		}, Math.random()*maxtime);
+	});
+	callback();
+};
+
+$(function() {
+	
 	var paused = false,
 		controldiv = $('#playpause'),
 		timer;
@@ -35,4 +46,31 @@ $(function() {
 		$("#slideshow > div:gt(0)").hide();
 		play();
 	}
+	
+	$(".square").hover(function() {
+		$(this).animate({
+			opacity: 1.0
+		}, 50);
+	},
+	function() {
+		$(this).animate({
+			opacity: 0.75
+		}, 50);
+	});
+
+	$(".square").each(function (i, e) {
+		var url = bucket+$(e).attr("id")+"_thumb.png";
+		$('<img/>').attr('src', url).load(function() {
+		   $(e).css("background-image", "url('"+url+"')");
+		   $(e).animate({
+				opacity: 0.75
+			}, Math.random()*1000);
+		});
+	});
+	
+	$(".navigation").click(function() {
+		easeGrid("panels", "out", 500, function() {
+			window.location.href("http://lycheelabs.org/"+$(this).attr("id"));
+		});
+	});
 });
