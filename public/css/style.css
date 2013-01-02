@@ -1,28 +1,48 @@
 @import url(http://fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700|Archivo+Narrow|Inconsolata|Open+Sans+Condensed:300);
+@import url(http://fonts.googleapis.com/css?family=Droid+Sans|PT+Sans+Narrow:400,700|Rambla:400,700|Archivo+Narrow|Inconsolata|Open+Sans+Condensed:300|Pacifico);
+
+@font-face {
+    font-family: 'MuseoSlab500Regular';
+    src: url('Museo_Slab_500-webfont.eot');
+    src: url('Museo_Slab_500-webfont.eot?#iefix') format('embedded-opentype'),
+         url('Museo_Slab_500-webfont.woff') format('woff'),
+         url('Museo_Slab_500-webfont.ttf') format('truetype'),
+         url('Museo_Slab_500-webfont.svg#MuseoSlab500Regular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
 body {
 	margin: 0px;
+	background-color: #eee;
+}
+
+#titlebox {
+	margin-left: auto;
+	margin-right: auto;
+	width: 640px;
 }
 
 #title {
 	font-family: 'PT Sans Narrow';
-	font-size: 36px;
-	color: #fff;
-	letter-spacing: -0.5px;
+	font-size: 42px;
+	color: #eee;
 	font-weight: bold;
-	text-shadow: 2px 2px 0px #6f000d; 
-	line-height: 40px;
-	float: left;
-	padding-right: 100px;
+	text-shadow: 1px 1px 2px #111; 
+	float: top;
+	line-height: 42px;
+	letter-spacing: 0px;
+	
 }
 
-#title, .nav {
-	padding-top: 5px;
-}
-
-#titlebox {
-	width: 700px;
-	height: 100%;
-	margin: auto;
+#subtitle {
+	font-family: 'Pacifico'; 
+	font-size: 26px; 
+	color: #eee; 
+	line-height: 26px;
+	text-shadow: -1px -1px 0px #6f000d; 
+	float: bottom;
+	margin-top: 10px;
 }
 
 #small { 
@@ -32,50 +52,84 @@ body {
 	text-transform: uppercase;
 	line-height: 9px;
 }
-.nav {
-	font-family: 'Inconsolata';
-	font-size: 14px;
+
+.navigation {
+	font-family: 'Rambla';
+	font-size: 13px;
 	color: #fff;
-	letter-spacing: -0.5px;
+	letter-spacing: 0px;
+	height: 100%;
 	text-transform: uppercase;
-	height: 45px;
-	line-height: 44px;
-	margin: auto;
+	padding: 0px 5px 0px 5px;
+	line-height: 32px;
 	float: left;
-	text-align: right; 
-	clear: none;
 	font-weight: bold;
-	text-shadow: 1px 1px 0px #6f000d;
-	padding-left: 10px;
-	padding-right: 10px;
-	cursor: pointer;
+	text-shadow: -1px -1px 0px #111; 
+	-moz-transition: background .15s linear;
+	-webkit-transition: background .15s linear;
+	border-radius: 2px;
+	text-align: center;
 }
 
-.nav:hover {
-	background-color: #ae0000;
+#leftheader {
+	left: 0px;
+}
+
+#rightheader {
+	right: 0px;
+	float: right;
+}
+
+.navigation:hover {
+	border-radius: 2px;
+	background-color: #a70010;
+}
+
+#hello {
+	padding: 10px;
+	width: 100%;
+	height: 85px;
+	background-color: #be0012;
+	box-shadow: inset 0 0 10px #111;
+	margin-top: 20px;
 }
 
 #red {
-	width: 900px;
-	height: 50px;
-	background-color: #be0012;
-	margin-left: auto;
-	margin-right: auto;
-}
-#header {
-	width: 150px;
-	height: 100%;
-	background-color: #eee;
-	padding-top: 5px;
-	padding-left: 50px;
-	box-shadow: 1px 1px 5px 1px #ddd;
+	width: 100%;
+	height: 32px;	
+	background-color: #444;
 }
 
-div#content {
+#header {
+	width: 640px;
+	height: 32px; 
 	margin-left: auto;
 	margin-right: auto;
-	padding-bottom: 20px;
-	width: 900px;
+}
+
+#content {
+	width: 700px;
+	margin: auto; 
+	background-color: #fff; 
+	padding: 0px; 
+	height: 100%;
+
+}
+
+#text {
+	font-family: 'Droid Sans'; 
+	font-size: 16px; 
+	color: #555;
+	padding: 10px;
+}
+
+
+#small { 
+	font-family: 'Inconsolata';
+	font-size: 12px;
+	color: #fff;
+	text-transform: uppercase;
+	line-height: 9px;
 }
 
 div#slidetitle {
@@ -83,11 +137,17 @@ div#slidetitle {
 	color: #fff;
 	font-weight: bold;
 	text-shadow: 2px 2px 0px #6f000d;
-	padding-bottom: 10px;
+	padding-bottom: 5px;
 	padding-right: 30px;
 	position: absolute;
-	bottom: 40px;
+	bottom: 20px;
 	right: 0px;
+	line-height: 30px;
+}
+
+h1, h2, h3 {
+	margin-top: 3px;
+	margin-bottom: 5px;
 }
 
 div.text {
@@ -102,17 +162,19 @@ div.text18 {
 }
 
 #slideshow {
-	height: 500px;
+	height: 388px;
 	position: absolute;
 }		
 
 #slidecontainer {
-	height: 500px;
+	height: 388px;
 	position: relative;
 }
 
 .slide {
 	position: absolute;
+	width: 700px;
+	height: 388px;
 }
 
 .slidecontrol {
