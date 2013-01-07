@@ -119,13 +119,6 @@ body {
 	width: 680px;
 }
 
-#text {
-	font-family: 'Droid Sans'; 
-	font-size: 16px; 
-	color: #555;
-	padding: 10px;
-}
-
 
 #small { 
 	font-family: 'Inconsolata';
@@ -155,7 +148,7 @@ h1, h2, h3 {
 
 div.text {
 	font-family: 'PT Sans Narrow';
-	margin-top: 30px;
+	padding-top: 20px;
 	margin-left: 10px;
 	margin-right: 10px;
 }
