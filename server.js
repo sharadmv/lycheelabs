@@ -9,7 +9,7 @@ app.set('view engine', 'ejs');
 app.set('views', __dirname + '/views');
 
 app.get('/', function(req, res) {
-	res.render('index', {title: ""});
+	res.render('index', {title: "welcome!"});
 });
 
 app.get('/about', function(req, res) {
@@ -17,7 +17,7 @@ app.get('/about', function(req, res) {
 });
 
 app.get("/home", function(req, res) {
-	res.render('about', {title: "about us"});
+	res.render('index', {title: "welcome!"});
 });
 
 app.get('/projects', function(req, res) {
