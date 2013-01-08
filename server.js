@@ -9,7 +9,7 @@ app.set('view engine', 'ejs');
 app.set('views', __dirname + '/views');
 
 app.get('/', function(req, res) {
-	res.render('about', {title: "about us"});
+	res.render('index', {title: ""});
 });
 
 app.get('/about', function(req, res) {

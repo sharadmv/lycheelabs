@@ -69,8 +69,10 @@ $(function() {
 	});
 	
 	$(".navigation").click(function() {
-		easeGrid("panels", "out", 500, function() {
-			window.location.href("http://lycheelabs.org/"+$(this).attr("id"));
+		$(".grid").each(function(i, e) {
+			easeGrid($(this).attr("id"), "out", 500, function() {
+				window.location.href("http://lycheelabs.org/"+$(this).attr("id"));
+			});
 		});
 	});
 });
