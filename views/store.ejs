@@ -1,23 +1,12 @@
 <% layout('layout') -%>
 <div id="content">
-	<a href="/about">
-	<div class="square" id="aboutus">
-		<div class="squaretext"><span>about</span></div>
-	</div>
-	</a>
-	<a href="/contact">
-	<div class="square" id="contactus">
-		<div class="squaretext"><span>contact</span></div>
-	</div>
-	</a>
-	<a href="/store">
-	<div class="square" id="lycheestore">
-		<div class="squaretext"><span>store</span></div>
-	</div>
-	</a>
-	<a href="/cart">
-	<div class="square" id="yourcart">
-		<div class="squaretext"><span>your cart</span></div>
-	</div>
-	</a>
+    <div class="grid" id="people">
+        <% items.forEach(function(item) { %>
+            <a href="/item/<%= item._id %>">
+                <div class="square" id='<%= item.picture %>'>
+                    <div class="squaretext"><span><%= item.name %></span></div>
+                </div>
+            </a>
+        <% }) %>
+    </div>
 </div>

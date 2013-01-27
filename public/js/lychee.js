@@ -10,7 +10,7 @@ function easeGrid(id, direction, maxtime, callback) {
 };
 
 $(function() {
-	
+
 	var paused = false,
 		controldiv = $('#playpause'),
 		timer;
@@ -26,13 +26,13 @@ $(function() {
 		}, 5000);
 		controldiv.text("Pause ||");
 	}
-	
+
 	function pause() {
 		clearInterval(timer);
 		controldiv.text("Play >");
 	}
-	
-	if (controldiv) {	
+
+	if (controldiv) {
 		controldiv.click(function() {
 			paused = !paused;
 			if (paused) {
@@ -42,11 +42,11 @@ $(function() {
 				play();
 			}
 		});
-		
+
 		$("#slideshow > div:gt(0)").hide();
 		play();
 	}
-	
+
 	$(".square").hover(function() {
 		$(this).animate({
 			opacity: 1.0
@@ -67,12 +67,12 @@ $(function() {
 			}, Math.random()*1000);
 		});
 	});
-	
+
 	$(".navigation").click(function() {
 		var destination = $(this).attr('id');
 		$(".grid").each(function(i, e) {
 			easeGrid($(this).attr("id"), "out", 500, function() {
-				window.location.href = "http://lycheelabs.org/"+destination;
+				window.location.href = "/"+destination;
 			});
 		});
 	});

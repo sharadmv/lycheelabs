@@ -1,6 +1,7 @@
 var fs = require("fs");
 var express = require('express'),
-    engine = require("ejs-locals");
+    engine = require("ejs-locals"),
+    store = require('./store');
 
 var app = express();
 app.engine('ejs', engine);
@@ -31,11 +32,14 @@ app.get('/projects/dummy', function(req, res) {
 });
 
 app.get('/store', function(req, res) {
-	res.render('projects');
+    store.items(function(items) {
+        console.log(items);
+	  res.render('store', {title : "store", items : items});
+    });
 });
 
 app.get('/cart', function(req, res) {
-	res.render('projects');
+	res.render('cart', {title : "cart"});
 });
 
 app.get('/checkout', function(req, res) {
