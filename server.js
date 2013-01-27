@@ -1,12 +1,14 @@
 var fs = require("fs");
-var express = require('express');
+var express = require('express'),
+    engine = require("ejs-locals");
 
-var app = express.createServer();
+var app = express();
+app.engine('ejs', engine);
 
-var dummy = fs.readFileSync("views/dummy.html");
-
-app.set('view engine', 'ejs');
-app.set('views', __dirname + '/views');
+app.configure(function() {
+    app.set('view engine', 'ejs');
+    app.set('views', __dirname + '/views');
+});
 
 app.get('/', function(req, res) {
 	res.render('index', {title: "welcome!"});
@@ -45,3 +47,4 @@ app.use('/', express.static(__dirname + "/public"));
 var port = process.env.PORT || 8000;
 
 app.listen(port);
+console.log("Server listening on", port);
