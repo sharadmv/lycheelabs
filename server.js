@@ -36,10 +36,27 @@ app.get('/store', function(req, res) {
 	    res.render('store', {title : "store", items : items});
     });
 });
+var formatPrice = function(amount) {
+    var i = parseFloat(amount);
+    if(isNaN(i)) { i = 0.00; }
+    var minus = '';
+    if(i < 0) { minus = '-'; }
+    i = Math.abs(i);
+    i = parseInt((i + .005) * 100);
+    i = i / 100;
+    s = new String(i);
+    if(s.indexOf('.') < 0) { s += '.00'; }
+    if(s.indexOf('.') == (s.length - 2)) { s += '0'; }
+    s = minus + s;
+    return s;
+}
 app.get('/store/item/:id', function(req, res) {
     store.item(req.params.id, function(item) {
-        console.log(item);
-	    res.render('item', {title : "store", item : item});
+        var temp = item.toJSON();
+        console.log(temp);
+        temp.price = '$'+formatPrice(item.price);
+        console.log(temp);
+	    res.render('item', {title : "store", item : temp});
     });
 });
 
