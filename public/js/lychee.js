@@ -9,7 +9,7 @@ function easeGrid(id, direction, maxtime, callback) {
 	callback();
 };
 
-$(function() {
+$(document).ready(function() {
 
 	var paused = false,
 		controldiv = $('#playpause'),
