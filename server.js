@@ -33,8 +33,13 @@ app.get('/projects/dummy', function(req, res) {
 
 app.get('/store', function(req, res) {
     store.items(function(items) {
-        console.log(items);
-	  res.render('store', {title : "store", items : items});
+	    res.render('store', {title : "store", items : items});
+    });
+});
+app.get('/store/item/:id', function(req, res) {
+    store.item(req.params.id, function(item) {
+        console.log(item);
+	    res.render('item', {title : "store", item : item});
     });
 });
 

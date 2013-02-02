@@ -1,0 +1,14 @@
+<% layout('layout') -%>
+<div id="content">
+    <div class='text'>
+        <div class="grid" id="item">
+            <div class="square" id='<%= item.picture %>'>
+                <div class="squaretext"><span></span></div>
+            </div>
+        </div>
+        <h2 class='indented intext'><%= item.name %></h2>
+        <div class='text18'><%= item.description %></div>
+        <div>Stock: <%= item.count%></div>
+        <div>Price: <%= item.price%></div>
+    </div>
+</div>

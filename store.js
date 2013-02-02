@@ -13,6 +13,11 @@ var interface = {
     model.Item.find({}, function(err, items) {
       callback(items);
     })
+  },
+  item : function(id, callback) {
+    model.Item.findOne({ _id : id }, function(err, item) {
+      callback(item);
+    })
   }
 }
 module.exports = interface;
