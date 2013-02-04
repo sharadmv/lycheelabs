@@ -1,0 +1,25 @@
+extends layout
+block js
+    script(src='/js/about.js')
+block css
+    script(src='/css/index.css')
+
+block content
+    #content
+        #aboutContent(class='text',ng-app='index', ng-controller='AboutController')
+            h2(class='intext').
+                What we do
+            #aboutus(class='text18')
+                p
+                    | Lychee Labs provides tools and components for makers in the Berkeley/SF area.
+                p
+                    | We're a group of friends who first met as officers of 
+                    a(href="http://hackersatberkeley.com").
+                        Hackers@Berkeley
+                    |  and share a passion for projects tying together the physical and virtual. Our goal is to make it easier for other hackers to do the same.
+                p.
+                    You can usually find us hacking in Cory or Soda Hall, or shipping hardware from Nelson's apartment on Le Conte street (right behind Soda).
+            h2(class='intext').
+                Who we are
+            #grid(class='grid', ng-controller='GridController')
+                square(ng-repeat='square in squares', class='square', ng-model='square', order='{{square.order}}',text='{{square.text}}',image='{{square.image}}', link='{{square.link}}').

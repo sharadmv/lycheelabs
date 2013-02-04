@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://lychee:labs@linus.mongohq.com:10080/app9987072');
+//mongoose.connect('mongodb://lychee:labs@linus.mongohq.com:10080/app9987072');
 
 var schema = {
   Item : mongoose.model('item', mongoose.Schema({
