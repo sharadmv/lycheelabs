@@ -69,6 +69,7 @@ body {
 	-webkit-transition: background .15s linear;
 	border-radius: 2px;
 	text-align: center;
+	cursor: pointer;
 }
 
 #leftheader {
@@ -111,16 +112,14 @@ body {
 	width: 700px;
 	margin: auto; 
 	background-color: #fff; 
-	padding: 0px; 
 	height: 100%;
-
+	padding-bottom: 20px;
+	overflow: hidden;
+	height: 1%;
 }
 
-#text {
-	font-family: 'Droid Sans'; 
-	font-size: 16px; 
-	color: #555;
-	padding: 10px;
+.text18>img{
+	width: 680px;
 }
 
 
@@ -152,13 +151,15 @@ h1, h2, h3 {
 
 div.text {
 	font-family: 'PT Sans Narrow';
-	margin-top: 30px;
+	padding-top: 20px;
 	margin-left: 10px;
 	margin-right: 10px;
 }
 
 div.text18 {
 	font-size: 18px;
+	margin-left: 5px;
+	margin-right: 5px;
 }
 
 #slideshow {
@@ -183,4 +184,44 @@ div.text18 {
 	font-weight: bold;
 	color: #ffe;
 	cursor: pointer;	
+}
+
+.square {
+	float: left;
+	width: 160px;
+	height: 160px;
+	margin-right: 5px;
+	margin-bottom: 5px;
+	background-color: white;
+	box-shadow: 2px 2px 3px #aaaaaa;
+	visibility: visible;
+	opacity: 0.0;
+	position: relative;
+}
+
+.grid {
+	margin-right: auto;
+	margin-left: auto;
+	padding-top: 15px;
+	position: relative;
+	width: 660px;
+}
+
+.squaretext {
+	position: absolute;
+	bottom: 0px;
+	height: 20px;
+	padding-bottom: 5px;
+	background-color: #444;
+	width: 120px;
+	border-left: 40px dashed white;
+	color: white;
+	opacity: 0.8;
+}
+
+.squaretext>span {
+	font-family: 'PT Sans Narrow';
+	font-size: 18px;
+	display: inline-block;
+	margin-left: 10px;
 }
