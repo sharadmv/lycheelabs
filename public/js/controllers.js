@@ -1,3 +1,5 @@
-function NavigationController($scope) {
-    console.log($scope);
+function NavigationController($scope, $element, NavigationService) {
+    $($element).find('.navigation').each(function(el) {
+        alert(el.html());
+    });
 }

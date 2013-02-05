@@ -1,6 +1,6 @@
 (function() {
     var BUCKET = "https://s3.amazonaws.com/lycheelabs/";
-    angular.module('lycheelabs', []).
+    var lychee = angular.module('lycheelabs', []).
         directive('square', function() {
         var time = 120;
         var count = 0;
@@ -68,6 +68,9 @@
             templateUrl : "/partial/square",
         }
     });
-
-    angular.module('index', []);
+    lychee.factory('NavigationService', function() {
+        return {
+            sup : 'hi'
+        }
+    });
 })();
