@@ -5,7 +5,7 @@
         "express": "3.X",
         "ejs": "*",
         "mongoose": "*",
-        "ejs-locals": "*"
+        "ejs-locals": "*",
     },
     "engines": {
         "node": "0.8.x",
