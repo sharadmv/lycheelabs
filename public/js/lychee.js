@@ -67,10 +67,30 @@
             require : 'ngModel',
             templateUrl : "/partial/square",
         }
+    })
+       .directive('navigation', function() {
+        return {
+            restrict : "E",
+            link : function(scope, element, attrs, model) {
+                scope.text = attrs.text;
+                scope.id = attrs.id;
+                scope.link = attrs.link;
+                scope.class = 'navigation';
+                scope.click = function() {
+                    scope.nav.meta.click(scope.link);
+                }
+            },
+            controller : function($scope, NavigationService) {
+                $scope.nav = NavigationService
+            },
+            scope : {},
+            replace : true,
+            template : "<a>{{text}}</a>"
+        }
     });
     lychee.factory('NavigationService', function() {
         return {
-            sup : 'hi'
+            controller : NavigationController
         }
     });
 })();

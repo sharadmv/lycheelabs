@@ -45,13 +45,18 @@ var squares = [
 function AboutController($scope) {
     $scope.squares = squares;
 }
-function GridController($scope) {
+function GridController($scope, NavigationService) {
     $scope.meta = {
         scope : {}
     };
     $scope.meta.count = 0;
     $scope.meta.length = squares.length;
     $scope.unload = function(link) {
-        window.location = link;
+        for (var i in $scope.meta.scope) {
+            $scope.meta.scope[i].unload(i, function() {
+                window.location = "/"+link;
+            });
+        }
     }
+    NavigationService.meta.unload = $scope.unload;
 }

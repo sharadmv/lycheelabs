@@ -13,14 +13,10 @@ html(lang='en', ng-app='lycheelabs')
     #topbar
       #header
         #leftheader(ng-controller='NavigationController')
-          a(id='home', class='navigation').
-            home
-          a(id='about', class='navigation').
-            about
-          a(id='contact', class='navigation').
-            contact
-          a(id='store', class='navigation').
-            store
+          navigation(ng-click='click()', text='home', link='home', id='home', class='navigation').
+          navigation(ng-click='click()', text='about', link='about',id='about', class='navigation').
+          navigation(ng-click='click()', text='contact', link='contact', id='contact', class='navigation').
+          navigation(ng-click='click()', text='store', link='store', id='store', class='navigation').
         #rightheader
           #cart(class='navigation')
             #dollars(style='float:left;padding-right:5px')

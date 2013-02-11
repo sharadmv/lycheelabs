@@ -1,5 +1,12 @@
 function NavigationController($scope, $element, NavigationService) {
-    $($element).find('.navigation').each(function(el) {
-        alert(el.html());
-    });
+    console.log($scope);
+    var interface = {
+        click : function(link) {
+            NavigationService.meta.unload(link);
+        },
+        on : function(event, callback) {
+
+        }
+    }
+    NavigationService.meta = interface;
 }

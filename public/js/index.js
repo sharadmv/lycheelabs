@@ -41,5 +41,5 @@ function GridController($scope, NavigationService) {
             });
         }
     }
-    NavigationService.unload = $scope.unload;
+    NavigationService.meta.unload = $scope.unload;
 }
