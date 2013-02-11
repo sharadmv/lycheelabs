@@ -1,0 +1,10 @@
+extends layout
+block js
+    script(src='/js/index.js')
+block css
+    script(src='/css/index.css')
+
+block content
+    #content(ng-app='index', ng-controller='IndexController')
+      #grid(class='grid', ng-controller='GridController')
+        square(ng-repeat='square in squares', class='square', ng-model='square', order='{{square.order}}',text='{{square.text}}',image='{{square.image}}', link='{{square.link}}').

@@ -54,6 +54,7 @@ body {
 }
 
 .navigation {
+    text-decoration:none;
 	font-family: 'Rambla';
 	font-size: 13px;
 	color: #fff;
@@ -86,7 +87,7 @@ body {
 	background-color: #a70010;
 }
 
-#hello {
+#logo{
 	padding: 10px;
 	width: 100%;
 	height: 85px;
@@ -95,12 +96,18 @@ body {
 	margin-top: 20px;
 }
 
-#red {
+#topbar {
 	width: 100%;
 	height: 32px;	
 	background-color: #444;
 }
 
+#logoimg {
+    opacity: 0.95; 
+    width: 100px; 
+    float: left; 
+    margin-top: -10px;
+}
 #header {
 	width: 640px;
 	height: 32px; 
@@ -187,6 +194,7 @@ div.text18 {
 }
 
 .square {
+    cursor:pointer;
 	float: left;
 	width: 160px;
 	height: 160px;
@@ -207,7 +215,7 @@ div.text18 {
 	width: 660px;
 }
 
-.squaretext {
+.squarewrap {
 	position: absolute;
 	bottom: 0px;
 	height: 20px;
@@ -219,7 +227,7 @@ div.text18 {
 	opacity: 0.8;
 }
 
-.squaretext>span {
+.squaretext {
 	font-family: 'PT Sans Narrow';
 	font-size: 18px;
 	display: inline-block;

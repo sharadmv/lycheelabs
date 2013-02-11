@@ -1,0 +1,37 @@
+doctype 5
+html(lang='en', ng-app='lycheelabs')
+  head
+    meta(http-equiv='Content-Type', content='text/html charset=utf-8')
+    link(rel='stylesheet', href='/css/style.css', type='text/css')
+    script(src='http://code.jquery.com/jquery-latest.js')
+    script(src='http://ajax.googleapis.com/ajax/libs/angularjs/1.0.4/angular.min.js')
+    script(src='/js/controllers.js')
+    script(src='/js/lychee.js')
+    block js
+    block css
+  body
+    #topbar
+      #header
+        #leftheader(ng-controller='NavigationController')
+          navigation(ng-click='click()', text='home', link='home', id='home', class='navigation').
+          navigation(ng-click='click()', text='about', link='about',id='about', class='navigation').
+          navigation(ng-click='click()', text='contact', link='contact', id='contact', class='navigation').
+          navigation(ng-click='click()', text='store', link='store', id='store', class='navigation').
+        #rightheader
+          #cart(class='navigation')
+            #dollars(style='float:left;padding-right:5px')
+              $0.00
+            #div(style='float:left').
+              cart
+          #checkout(class='navigation').
+            checkout
+    #logo        
+      #titlebox
+        img(id='logoimg', src='https://s3.amazonaws.com/lycheelabs/lychee.png')
+        #title.
+            lycheelabs
+        #subtitle.
+            #{title}
+    block content
+    block footer
+      #footer
