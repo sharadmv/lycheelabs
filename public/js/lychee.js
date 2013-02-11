@@ -40,10 +40,10 @@
                 }
                 scope.unload = function(delay, callback) {
                     setTimeout(function() {
+                        unloaded = true;
                         element.animate({
                             "opacity" : 0
                         }, time*3, function() {
-                            unloaded = true;
                             parent.meta.count++;
                             if (parent.meta.count == parent.meta.length) {
                                 callback();
