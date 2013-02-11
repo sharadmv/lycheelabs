@@ -54,7 +54,7 @@ function GridController($scope, NavigationService) {
     $scope.unload = function(link) {
         for (var i in $scope.meta.scope) {
             $scope.meta.scope[i].unload(i, function() {
-                window.location = "/"+link;
+                window.location = link;
             });
         }
     }
